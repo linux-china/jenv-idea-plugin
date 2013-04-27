@@ -6,13 +6,13 @@
     <vendor email="linux_china@hotmail.com" url="http://jenv.mvnsearch.org">jenv</vendor>
 
     <description><![CDATA[
-      jenv is Java environment manager, and it is a clone of RVM for Java.
-      and jenv IDEA plugin can help IDEA guys to use jenv easily.
+      jenv(http://jenv.mvnsearch.org) is Java environment manager, and it is a clone of RVM for Java.
+      jenv IDEA plugin can give IDEA guys conveniences with jenv support, such as SDK auto detection.
       ]]></description>
 
     <change-notes><![CDATA[
         <ul> 0.0.1:
-          <li>Java Sdk created automatically</li>
+          <li>Java SDK created automatically</li>
           <li>jenvrc file associated with Properties file type</li>
           <li>Set project sdk according to jenvrc file</li>
           <li>Maven support: Auto set M2_HOME for project</li>
