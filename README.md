@@ -17,3 +17,4 @@ For more information about jenv, please visit http://jenv.mvnsearch.org
 * Tomcat auto detect
 * Jetty auto detect
 * OSGi
+* Candidate auto download and install
