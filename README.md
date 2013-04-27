@@ -8,7 +8,12 @@ For more information about jenv, please visit http://jenv.mvnsearch.org
 * Java Sdk created automatically
 * jenvrc support
 * Set project sdk according to jenvrc file
+* Maven support: Auto set M2_HOME for project
+* Gradle support: Auto set Gradle home for project
+* Gant support
 
 ### Todo
 
-* Setup Maven & Gradle
+* Tomcat auto detect
+* Jetty auto detect
+* OSGi
