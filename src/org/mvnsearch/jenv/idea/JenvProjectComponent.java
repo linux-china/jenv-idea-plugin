@@ -65,10 +65,10 @@ public class JenvProjectComponent implements ProjectComponent {
             //maven
             if (properties.containsKey("maven")) {
                 String mavenVersion = properties.getProperty("maven");
-                if (JenvApplicationComponent.JENV_HOME.exists()) {
-                    File mavenHome = new File(JenvApplicationComponent.JENV_HOME, "candidates/maven/" + mavenVersion);
-                    if (mavenHome.exists()) {
-                        MavenGeneralSettings generalSettings = MavenProjectsManager.getInstance(project).getGeneralSettings();
+                File mavenHome = JenvApplicationComponent.getInstance().getCandidateHome("maven", mavenVersion);
+                if (mavenHome.exists()) {
+                    MavenGeneralSettings generalSettings = MavenProjectsManager.getInstance(project).getGeneralSettings();
+                    if (generalSettings != null) {
                         generalSettings.setMavenHome(mavenHome.getAbsolutePath());
                         //generalSettings.setUserSettingsFile(mavenHome.getAbsolutePath() + "/conf/settings.xml");
                     }
