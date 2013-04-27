@@ -6,6 +6,8 @@ For more information about jenv, please visit http://jenv.mvnsearch.org
 ### Features
 
 * Java Sdk created automatically
+* jenvrc support
+* Set project sdk according to jenvrc file
 
 ### Todo
 
