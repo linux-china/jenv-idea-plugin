@@ -26,9 +26,33 @@ import java.util.List;
  */
 public class JenvApplicationComponent implements ApplicationComponent {
     /**
+     * jenv home
+     */
+    public File JENV_HOME;
+
+    /**
      * construct method
      */
     public JenvApplicationComponent() {
+
+    }
+
+    /**
+     * Fetches the instance of JenvApplicationComponent implementation.
+     */
+    public static JenvApplicationComponent getInstance() {
+        return ApplicationManager.getApplication().getComponent(JenvApplicationComponent.class);
+    }
+
+    /**
+     * get candidate home
+     *
+     * @param candidate canidate name
+     * @param version   version
+     * @return candidate home
+     */
+    public File getCandidateHome(String candidate, String version) {
+        return new File(JENV_HOME, "candidates/" + candidate + "/" + version);
     }
 
     /**
@@ -38,12 +62,12 @@ public class JenvApplicationComponent implements ApplicationComponent {
         //associate jenvrc with properties file type
         registerJenvrc();
         //setup java sdk
-        File jenvHome = new File(new File(System.getProperty("user.home")), ".jenv");
+        JENV_HOME = new File(new File(System.getProperty("user.home")), ".jenv");
         if (SystemUtils.IS_OS_WINDOWS) {
-            jenvHome = new File("c:/jenv");
+            JENV_HOME = new File("c:/jenv");
         }
-        if (jenvHome.exists()) {
-            File javaHome = new File(jenvHome, "candidates/java");
+        if (JENV_HOME.exists()) {
+            File javaHome = new File(JENV_HOME, "candidates/java");
             if (javaHome.exists()) {
                 File[] jdkVersions = javaHome.listFiles();
                 if (jdkVersions != null) {
