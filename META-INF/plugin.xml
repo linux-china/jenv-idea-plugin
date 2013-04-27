@@ -27,20 +27,17 @@
 
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
          on how to target different products -->
-    <!--uncomment to enable plugin in all products-->
     <depends>org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>org.intellij.groovy</depends>
 
     <application-components>
-        <!-- Add your application components here -->
         <component>
             <implementation-class>org.mvnsearch.jenv.idea.JenvApplicationComponent</implementation-class>
         </component>
     </application-components>
 
     <project-components>
-        <!-- Add your project components here -->
         <component>
             <implementation-class>org.mvnsearch.jenv.idea.JenvProjectComponent</implementation-class>
         </component>
