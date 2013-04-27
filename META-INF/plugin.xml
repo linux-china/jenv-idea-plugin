@@ -15,6 +15,7 @@
           <li>Java Sdk created automatically</li>
           <li>jenvrc file associated with Properties file type</li>
           <li>Set project sdk according to jenvrc file</li>
+          <li>Maven support: Auto set M2_HOME</li>
         <ul>
       ]]>
     </change-notes>
@@ -24,9 +25,8 @@
 
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
          on how to target different products -->
-    <!-- uncomment to enable plugin in all products
-    <depends>com.intellij.modules.lang</depends>
-    -->
+    <!--uncomment to enable plugin in all products-->
+    <depends>org.jetbrains.idea.maven</depends>
 
     <application-components>
         <!-- Add your application components here -->
