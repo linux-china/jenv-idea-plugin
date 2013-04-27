@@ -11,6 +11,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.idea.maven.project.MavenGeneralSettings;
 import org.jetbrains.idea.maven.project.MavenProjectsManager;
 import org.jetbrains.plugins.gradle.config.GradleSettings;
+import org.jetbrains.plugins.groovy.gant.GantSettings;
+import org.jetbrains.plugins.groovy.util.SdkHomeConfigurable;
 
 import java.io.File;
 import java.util.Properties;
@@ -92,7 +94,18 @@ public class JenvProjectComponent implements ProjectComponent {
                     }
                 }
             }
+            //gant
+            File gantHome = JenvApplicationComponent.getInstance().getCandidateHome("gant", "current");
+            if (gantHome.exists()) {
+                SdkHomeConfigurable.SdkHomeBean state = GantSettings.getInstance(project).getState();
+                if (state == null) {
+                    state = new SdkHomeConfigurable.SdkHomeBean();
+                    state.SDK_HOME = gantHome.getAbsolutePath();
+                    GantSettings.getInstance(project).loadState(state);
+                }
+            }
         }
+
     }
 
     public void projectClosed() {
