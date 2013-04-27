@@ -7,7 +7,10 @@ import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.projectRoots.impl.SdkConfigurationUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.idea.maven.project.MavenGeneralSettings;
+import org.jetbrains.idea.maven.project.MavenProjectsManager;
 
+import java.io.File;
 import java.util.Properties;
 
 /**
@@ -51,11 +54,24 @@ public class JenvProjectComponent implements ProjectComponent {
             } catch (Exception ignore) {
 
             }
+            //java
             if (properties.containsKey("java")) {
-                String version = properties.getProperty("java");
-                Sdk jdk = ProjectJdkTable.getInstance().findJdk(version);
+                String javaVersion = properties.getProperty("java");
+                Sdk jdk = ProjectJdkTable.getInstance().findJdk(javaVersion);
                 if (jdk != null) {
                     SdkConfigurationUtil.setDirectoryProjectSdk(project, jdk);
+                }
+            }
+            //maven
+            if (properties.containsKey("maven")) {
+                String mavenVersion = properties.getProperty("maven");
+                if (JenvApplicationComponent.JENV_HOME.exists()) {
+                    File mavenHome = new File(JenvApplicationComponent.JENV_HOME, "candidates/maven/" + mavenVersion);
+                    if (mavenHome.exists()) {
+                        MavenGeneralSettings generalSettings = MavenProjectsManager.getInstance(project).getGeneralSettings();
+                        generalSettings.setMavenHome(mavenHome.getAbsolutePath());
+                        //generalSettings.setUserSettingsFile(mavenHome.getAbsolutePath() + "/conf/settings.xml");
+                    }
                 }
             }
         }
