@@ -11,8 +11,10 @@
       ]]></description>
 
     <change-notes><![CDATA[
-        <ul> 0.0.1
+        <ul> 0.0.1:
           <li>Java Sdk created automatically</li>
+          <li>jenvrc file associated with Properties file type</li>
+          <li>Set project sdk according to jenvrc file</li>
         <ul>
       ]]>
     </change-notes>
@@ -35,6 +37,9 @@
 
     <project-components>
         <!-- Add your project components here -->
+        <component>
+            <implementation-class>org.mvnsearch.jenv.idea.JenvProjectComponent</implementation-class>
+        </component>
     </project-components>
 
     <actions>
