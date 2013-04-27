@@ -5,10 +5,12 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.projectRoots.ProjectJdkTable;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.projectRoots.impl.SdkConfigurationUtil;
+import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.idea.maven.project.MavenGeneralSettings;
 import org.jetbrains.idea.maven.project.MavenProjectsManager;
+import org.jetbrains.plugins.gradle.config.GradleSettings;
 
 import java.io.File;
 import java.util.Properties;
@@ -71,6 +73,22 @@ public class JenvProjectComponent implements ProjectComponent {
                     if (generalSettings != null) {
                         generalSettings.setMavenHome(mavenHome.getAbsolutePath());
                         //generalSettings.setUserSettingsFile(mavenHome.getAbsolutePath() + "/conf/settings.xml");
+                    }
+                }
+            }
+            //auto set gradle home according to jenvrc
+            GradleSettings gradleSettings = GradleSettings.getInstance(project);
+            if (properties.containsKey("gradle")) {
+                String gradleVersion = properties.getProperty("gradle");
+                File gradleHome = JenvApplicationComponent.getInstance().getCandidateHome("gradle", gradleVersion);
+                if (gradleHome.exists()) {
+                    gradleSettings.setGradleHome(gradleHome.getAbsolutePath());
+                }
+            } else {  // set gradle home if absent
+                if (StringUtil.isEmpty(gradleSettings.getGradleHome())) {
+                    File gradleHome = JenvApplicationComponent.getInstance().getCandidateHome("gradle", "current");
+                    if (gradleHome.exists()) {
+                        gradleSettings.setGradleHome(gradleHome.getAbsolutePath());
                     }
                 }
             }
