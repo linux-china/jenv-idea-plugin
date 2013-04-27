@@ -2,6 +2,9 @@ package org.mvnsearch.jenv.idea;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ApplicationComponent;
+import com.intellij.openapi.fileTypes.FileNameMatcher;
+import com.intellij.openapi.fileTypes.FileType;
+import com.intellij.openapi.fileTypes.FileTypeManager;
 import com.intellij.openapi.projectRoots.JavaSdk;
 import com.intellij.openapi.projectRoots.ProjectJdkTable;
 import com.intellij.openapi.projectRoots.Sdk;
@@ -32,6 +35,9 @@ public class JenvApplicationComponent implements ApplicationComponent {
      * init component, setup sdk automatically
      */
     public void initComponent() {
+        //associate jenvrc with properties file type
+        registerJenvrc();
+        //setup java sdk
         File jenvHome = new File(new File(System.getProperty("user.home")), ".jenv");
         if (SystemUtils.IS_OS_WINDOWS) {
             jenvHome = new File("c:/jenv");
@@ -65,6 +71,25 @@ public class JenvApplicationComponent implements ApplicationComponent {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * register jenvrc pattern for properties file
+     */
+    private void registerJenvrc() {
+        boolean registered = false;
+        FileTypeManager fileTypeManager = FileTypeManager.getInstance();
+        FileType propertiesFileType = fileTypeManager.getFileTypeByExtension(".properties");
+        List<FileNameMatcher> associations = fileTypeManager.getAssociations(propertiesFileType);
+        for (FileNameMatcher association : associations) {
+            if (association.getPresentableString().equals("jenvrc")) {
+                registered = true;
+                break;
+            }
+        }
+        if (!registered) {
+            fileTypeManager.associatePattern(propertiesFileType, "jenvrc");
         }
     }
 
