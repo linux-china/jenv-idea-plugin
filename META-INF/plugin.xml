@@ -17,6 +17,7 @@
           <li>Set project sdk according to jenvrc file</li>
           <li>Maven support: Auto set M2_HOME for project</li>
           <li>Gradle support: Auto set Gradle home for project</li>
+          <li>Gant support: Auto set Gant home for project</li>
         <ul>
       ]]>
     </change-notes>
@@ -29,6 +30,7 @@
     <!--uncomment to enable plugin in all products-->
     <depends>org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
+    <depends>org.intellij.groovy</depends>
 
     <application-components>
         <!-- Add your application components here -->
