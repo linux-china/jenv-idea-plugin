@@ -18,4 +18,5 @@ For more information about jenv, please visit http://jenv.mvnsearch.org
 * Jetty auto detect
 * OSGi
 * JBoss
+* Grails auto detect
 * Candidate auto download and install
