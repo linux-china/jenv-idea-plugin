@@ -2,7 +2,7 @@
 <idea-plugin version="2">
     <id>jenv-idea-plugin</id>
     <name>jenv IntelliJ IDEA plugin</name>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <vendor email="linux_china@hotmail.com" url="http://jenv.mvnsearch.org">jenv</vendor>
 
     <description><![CDATA[
@@ -11,6 +11,9 @@
       ]]></description>
 
     <change-notes><![CDATA[
+        <ul> 0.0.2:
+          <li>Compiled for IntelliJ IDEA 13</li>
+        <ul>
         <ul> 0.0.1:
           <li>Java SDK created automatically</li>
           <li>jenvrc file associated with Properties file type</li>
@@ -23,7 +26,7 @@
     </change-notes>
 
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="129.1"/>
+    <idea-version since-build="135.1"/>
 
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
          on how to target different products -->
