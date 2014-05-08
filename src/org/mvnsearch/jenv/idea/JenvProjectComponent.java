@@ -10,7 +10,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.idea.maven.project.MavenGeneralSettings;
 import org.jetbrains.idea.maven.project.MavenProjectsManager;
-import org.jetbrains.plugins.gradle.config.GradleSettings;
+import org.jetbrains.plugins.gradle.settings.GradleSettings;
 import org.jetbrains.plugins.groovy.gant.GantSettings;
 import org.jetbrains.plugins.groovy.util.SdkHomeConfigurable;
 
@@ -84,13 +84,13 @@ public class JenvProjectComponent implements ProjectComponent {
                 String gradleVersion = properties.getProperty("gradle");
                 File gradleHome = JenvApplicationComponent.getInstance().getCandidateHome("gradle", gradleVersion);
                 if (gradleHome.exists()) {
-                    gradleSettings.setGradleHome(gradleHome.getAbsolutePath());
+                    gradleSettings.setServiceDirectoryPath(gradleHome.getAbsolutePath());
                 }
             } else {  // set gradle home if absent
-                if (StringUtil.isEmpty(gradleSettings.getGradleHome())) {
+                if (StringUtil.isEmpty(gradleSettings.getServiceDirectoryPath())) {
                     File gradleHome = JenvApplicationComponent.getInstance().getCandidateHome("gradle", "current");
                     if (gradleHome.exists()) {
-                        gradleSettings.setGradleHome(gradleHome.getAbsolutePath());
+                        gradleSettings.setServiceDirectoryPath(gradleHome.getAbsolutePath());
                     }
                 }
             }
